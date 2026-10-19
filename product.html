@@ -1,0 +1,117 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Product — VelouJewels</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="announcement">
+    Complimentary delivery on orders over 700 MAD · Made to be remembered
+  </div>
+
+  <header>
+    <a class="logo" href="index.html">
+      VELOU<span>JEWELS</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="actions">
+      <button class="searchBtn">⌕</button>
+      <a href="account.html">♙</a>
+      <a href="collections.html#wishlist">♡<b class="wishCount">0</b></a>
+      <a href="cart.html">♧<b class="cartCount">0</b></a>
+      <button class="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <div class="searchPanel">
+    <div>
+      <input
+        id="search"
+        placeholder="Search rings, necklaces, bracelets…"
+      >
+      <button class="closeSearch">×</button>
+    </div>
+
+    <section id="searchResults"></section>
+  </div>
+
+  <div class="mobileMenu">
+    <button class="closeMenu">×</button>
+    <a href="index.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="contact.html">Contact</a>
+    <a href="account.html">Account</a>
+  </div>
+
+  <main>
+    <section id="productPage" class="section productPage"></section>
+
+    <section class="section reviewsSection" id="reviewsSection">
+      <div id="reviewsContent"></div>
+    </section>
+
+    <section class="section">
+      <div class="heading">
+        <div>
+          <small>YOU MAY ALSO LIKE</small>
+          <h2>Complete the look</h2>
+        </div>
+      </div>
+
+      <div id="recommendations" class="grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <a class="logo" href="index.html">
+        VELOU<span>JEWELS</span>
+      </a>
+
+      <p>Jewelry for the beautifully ordinary moments.</p>
+    </div>
+
+    <div>
+      <strong>Explore</strong>
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div>
+      <strong>Help</strong>
+      <a href="contact.html">Shipping & returns</a>
+      <a href="contact.html">Care guide</a>
+    </div>
+
+    <div>
+      <strong>Follow</strong>
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+    </div>
+
+    <small class="copyright">© 2026 VelouJewels.</small>
+  </footer>
+
+  <div id="toast"></div>
+
+  <script src="products.js"></script>
+  <script src="main.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>

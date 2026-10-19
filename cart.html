@@ -1,0 +1,244 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cart — VelouJewels</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="announcement">
+    Complimentary delivery on orders over 700 MAD · Made to be remembered
+  </div>
+
+  <header>
+    <a class="logo" href="index.html">
+      VELOU<span>JEWELS</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="actions">
+      <button class="searchBtn">⌕</button>
+      <a href="account.html">♙</a>
+      <a href="collections.html#wishlist">♡<b class="wishCount">0</b></a>
+      <a href="cart.html">♧<b class="cartCount">0</b></a>
+      <button class="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <div class="searchPanel">
+    <div>
+      <input id="search" placeholder="Search rings, necklaces, bracelets…">
+      <button class="closeSearch">×</button>
+    </div>
+    <section id="searchResults"></section>
+  </div>
+
+  <div class="mobileMenu">
+    <button class="closeMenu"></button>
+    <a href="index.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="contact.html">Contact</a>
+    <a href="account.html">Account</a>
+  </div>
+
+  <main>
+    <section class="pageHero small">
+      <small>YOUR SELECTION</small>
+      <h1>Your <i>cart.</i></h1>
+    </section>
+
+    <section class="section cartLayout">
+      <div id="cartItems"></div>
+
+      <aside class="summary">
+        <small>ORDER SUMMARY</small>
+
+        <div>
+          <span>Subtotal</span>
+          <b id="subtotal">0 MAD</b>
+        </div>
+
+        <div>
+          <span>Delivery</span>
+          <span id="delivery">—</span>
+        </div>
+
+        <hr>
+
+        <div class="total">
+          <span>Total</span>
+          <b id="total">0 MAD</b>
+        </div>
+
+        <button id="whatsapp" class="btn dark full">
+          Order via WhatsApp ↗
+        </button>
+
+        <p>No real payment is processed. This demo sends the order to WhatsApp.</p>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <a class="logo" href="index.html">
+        VELOU<span>JEWELS</span>
+      </a>
+    </div>
+
+    <div>
+      <strong>Explore</strong>
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+    </div>
+
+    <div>
+      <strong>Help</strong>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html">Care guide</a>
+    </div>
+
+    <div>
+      <strong>Follow</strong>
+      <a href="#">Instagram</a>
+    </div>
+
+    <small class="copyright">© 2026 VelouJewels.</small>
+  </footer>
+
+  <div id="toast"></div>
+
+  <script src="products.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+    function drawCart() {
+      let items = getCart();
+      let box = document.querySelector('#cartItems');
+
+      if (!items.length) {
+        box.innerHTML = `
+          <div class="empty">
+            <h2>Your cart is empty.</h2>
+            <p>Humanity has survived worse, but let us fix this.</p>
+            <a class="btn dark" href="collections.html">
+              Discover jewelry →
+            </a>
+          </div>
+        `;
+
+        subtotal.textContent = total.textContent = '0 MAD';
+        delivery.textContent = '—';
+        whatsapp.disabled = true;
+
+        return;
+      }
+
+      let sub = 0;
+
+      box.innerHTML = items.map(i => {
+        let p = products.find(x => x.id === i.id);
+
+        sub += p.price * i.qty;
+
+        return `
+          <article class="cartItem">
+            <a href="product.html?id=${p.id}">
+              <img src="${p.images[0]}" alt="${p.name}">
+            </a>
+
+            <div>
+              <small>${p.category}</small>
+              <h3>${p.name}</h3>
+              <p>${p.price} MAD</p>
+
+              <div class="qty">
+                <button data-minus="${p.id}">−</button>
+                <span>${i.qty}</span>
+                <button data-plus="${p.id}">+</button>
+              </div>
+
+              <button class="remove" data-remove="${p.id}">
+                Remove
+              </button>
+            </div>
+
+            <b>${p.price * i.qty} MAD</b>
+          </article>
+        `;
+      }).join('');
+
+      let d = sub >= 700 ? 0 : 35;
+
+      subtotal.textContent = sub + ' MAD';
+      delivery.textContent = d ? '35 MAD' : 'Complimentary';
+      total.textContent = (sub + d) + ' MAD';
+      whatsapp.disabled = false;
+    }
+
+    document.addEventListener('click', e => {
+      let id = Number(
+        e.target.dataset.plus ||
+        e.target.dataset.minus ||
+        e.target.dataset.remove
+      );
+
+      if (!id) return;
+
+      let c = getCart();
+      let i = c.find(x => x.id === id);
+
+      if (e.target.dataset.plus) i.qty++;
+
+      if (e.target.dataset.minus) {
+        i.qty = Math.max(1, i.qty - 1);
+      }
+
+      if (e.target.dataset.remove) {
+        c = c.filter(x => x.id !== id);
+      }
+
+      saveCart(c);
+      updateCounts();
+      drawCart();
+    });
+
+    whatsapp.onclick = () => {
+      let items = getCart();
+
+      if (!items.length) return;
+
+      let lines = items.map(i => {
+        let p = products.find(x => x.id === i.id);
+        return `• ${p.name} x${i.qty} — ${p.price * i.qty} MAD`;
+      }).join('%0A');
+
+      let sub = items.reduce(
+        (s, i) => s + products.find(p => p.id === i.id).price * i.qty,
+        0
+      );
+
+      let d = sub >= 700 ? 0 : 35;
+
+      window.open(
+        'https://wa.me/212600000000?text=' +
+        `Hello VelouJewels! I'd like to order:%0A%0A${lines}%0A%0ATotal: ${sub + d} MAD%0A%0AMy name:%0AMy address:`,
+        '_blank'
+      );
+    };
+
+    drawCart();
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collections — VelouJewels</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="announcement">
+    Complimentary delivery on orders over 700 MAD · Made to be remembered
+  </div>
+
+  <header>
+    <a class="logo" href="index.html">
+      VELOU<span>JEWELS</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a class="active" href="collections.html">Collections</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="actions">
+      <button class="searchBtn">⌕</button>
+      <a href="account.html">♙</a>
+      <a href="#wishlist">♡<b class="wishCount">0</b></a>
+      <a href="cart.html">♧<b class="cartCount">0</b></a>
+      <button class="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <div class="searchPanel">
+    <div>
+      <input id="search" placeholder="Search rings, necklaces, bracelets…">
+      <button class="closeSearch">×</button>
+    </div>
+    <section id="searchResults"></section>
+  </div>
+
+  <div class="mobileMenu">
+    <button class="closeMenu">×</button>
+    <a href="index.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="contact.html">Contact</a>
+    <a href="account.html">Account</a>
+  </div>
+
+  <main>
+    <section class="pageHero">
+      <small>VELOU COLLECTIONS</small>
+      <h1>
+        Find your<br>
+        <i>signature piece.</i>
+      </h1>
+      <p>Everyday essentials, sculptural statements and little luxuries.</p>
+    </section>
+
+    <section class="section shop">
+      <div class="toolbar">
+        <div class="filters">
+          <button class="filter active" data-cat="All">All</button>
+          <button class="filter" data-cat="Necklaces">Necklaces</button>
+          <button class="filter" data-cat="Rings">Rings</button>
+          <button class="filter" data-cat="Bracelets">Bracelets</button>
+          <button class="filter" data-cat="Earrings">Earrings</button>
+        </div>
+
+        <select id="sort">
+          <option value="featured">Featured</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+          <option value="az">Name: A–Z</option>
+        </select>
+      </div>
+
+      <div id="collectionGrid" class="grid large"></div>
+    </section>
+
+    <section id="wishlist" class="section wishSection">
+      <div class="heading">
+        <div>
+          <small>SAVED FOR LATER</small>
+          <h2>Your wishlist</h2>
+        </div>
+      </div>
+
+      <div id="wishlistGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <a class="logo" href="index.html">
+        VELOU<span>JEWELS</span>
+      </a>
+      <p>Jewelry for the beautifully ordinary moments.</p>
+    </div>
+
+    <div>
+      <strong>Explore</strong>
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div>
+      <strong>Help</strong>
+      <a href="contact.html">Shipping & returns</a>
+      <a href="contact.html">Care guide</a>
+    </div>
+
+    <div>
+      <strong>Follow</strong>
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+    </div>
+
+    <small class="copyright">© 2026 VelouJewels.</small>
+  </footer>
+
+  <div id="toast"></div>
+
+  <script src="products.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const q = new URLSearchParams(location.search).get('category');
+
+      if (q) {
+        document.querySelectorAll('.filter').forEach(b => {
+          b.classList.toggle(
+            'active',
+            b.dataset.cat.toLowerCase() === q.toLowerCase()
+          );
+        });
+      }
+
+      renderCollection(q || 'All');
+      renderWishlist();
+
+      document.querySelectorAll('.filter').forEach(b => {
+        b.onclick = () => {
+          document.querySelectorAll('.filter').forEach(x => {
+            x.classList.remove('active');
+          });
+
+          b.classList.add('active');
+          renderCollection(b.dataset.cat, sort.value);
+        };
+      });
+
+      sort.onchange = () => {
+        renderCollection(
+          document.querySelector('.filter.active').dataset.cat,
+          sort.value
+        );
+      };
+    });
+  </script>
+</body>
+</html>

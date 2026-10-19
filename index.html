@@ -1,0 +1,159 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>VelouJewels — Fine Jewelry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="announcement">
+        Complimentary delivery on orders over 700 MAD · Made to be remembered
+    </div>
+
+    <header>
+        <a class="logo" href="index.html">VELOU<span>JEWELS</span></a>
+
+        <nav>
+            <a class="active" href="index.html">Home</a>
+            <a href="collections.html">Collections</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="actions">
+            <button class="searchBtn">⌕</button>
+            <a href="collections.html#wishlist">♡<b class="wishCount">0</b></a>
+            <a href="cart.html">♧<b class="cartCount">0</b></a>
+            <button class="menuBtn">☰</button>
+        </div>
+    </header>
+
+    <div class="searchPanel">
+        <div>
+            <input id="search" placeholder="Search rings, necklaces, bracelets…">
+            <button class="closeSearch">×</button>
+        </div>
+        <section id="searchResults"></section>
+    </div>
+
+    <div class="mobileMenu">
+        <button class="closeMenu">×</button>
+        <a href="index.html">Home</a>
+        <a href="collections.html">Collections</a>
+        <a href="contact.html">Contact</a>
+        <a href="account.html">Account</a>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="heroBg"></div>
+            <div class="heroShade"></div>
+
+            <div class="heroText">
+                <small>THE NOCTURNE COLLECTION</small>
+                <h1>Jewelry that<br><i>stays with you.</i></h1>
+                <p>Quietly striking pieces designed for the moments you never forget.</p>
+                <a class="btn light" href="collections.html">
+                    Explore collection <span>→</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="intro">
+            <small>VELOU / ESSENTIALS</small>
+            <h2>Made for your<br><i>everyday glow.</i></h2>
+            <p>Delicate chains, sculptural silhouettes and little luxuries made to become part of you.</p>
+        </section>
+
+        <section class="section">
+            <div class="heading">
+                <div>
+                    <small>SHOP THE EDIT</small>
+                    <h2>New arrivals</h2>
+                </div>
+                <a href="collections.html">View all →</a>
+            </div>
+
+            <div id="featured" class="grid"></div>
+        </section>
+
+        <section class="editorial">
+            <div class="editorialImg"></div>
+
+            <div class="editorialText">
+                <small>THE ART OF LAYERING</small>
+                <h2>More than<br><i>one piece.</i></h2>
+                <p>Mix fine chains, sculptural hoops and soft stones. Your jewelry should feel like yours.</p>
+                <a class="btn dark" href="collections.html">
+                    Shop the collection <span>→</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="heading">
+                <div>
+                    <small>FIND YOUR PIECE</small>
+                    <h2>Shop by category</h2>
+                </div>
+            </div>
+
+            <div class="categories">
+                <a href="collections.html?category=Necklaces" class="cat necklace">Necklaces</a>
+                <a href="collections.html?category=Rings" class="cat ring">Rings</a>
+                <a href="collections.html?category=Bracelets" class="cat bracelet">Bracelets</a>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <small>THE VELOU LETTER</small>
+            <h2>Something beautiful<br>is coming.</h2>
+            <p>New collections, private drops and little things worth knowing.</p>
+
+            <form id="newsletter">
+                <input required type="email" placeholder="Your email address">
+                <button>Join us</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <a class="logo" href="index.html">VELOU<span>JEWELS</span></a>
+            <p>Jewelry for the beautifully ordinary moments.</p>
+        </div>
+
+        <div>
+            <strong>Explore</strong>
+            <a href="index.html">Home</a>
+            <a href="collections.html">Collections</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div>
+            <strong>Help</strong>
+            <a href="contact.html">Shipping & returns</a>
+            <a href="contact.html">Care guide</a>
+            <a href="contact.html">WhatsApp</a>
+        </div>
+
+        <div>
+            <strong>Follow</strong>
+            <a href="#">Instagram</a>
+            <a href="#">Pinterest</a>
+            <a href="#">TikTok</a>
+        </div>
+
+        <small class="copyright">© 2026 VelouJewels. All rights reserved.</small>
+    </footer>
+
+    <div id="toast"></div>
+
+    <script src="products.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
